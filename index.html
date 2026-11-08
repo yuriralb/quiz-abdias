@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz em grupos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <section class="tela" id="tela-configuracao" aria-labelledby="titulo-configuracao">
+      <p class="sobretitulo">Intermediador · configuração</p>
+      <h1 id="titulo-configuracao">Cadastre os grupos</h1>
+      <p class="introducao">Adicione os grupos participantes e escolha uma cor para identificar cada um durante o quiz.</p>
+
+      <form id="form-grupo" class="cadastro-linha">
+        <label for="nome-grupo-input">Nome do grupo
+          <input id="nome-grupo-input" type="text" maxlength="30" placeholder="Ex.: Equipe Azul" required>
+        </label>
+        <label class="campo-cor" for="cor-grupo-input">Cor
+          <input id="cor-grupo-input" type="color" value="#5b63d3" aria-label="Cor do grupo">
+        </label>
+        <button class="botao" type="submit">Adicionar grupo</button>
+      </form>
+
+      <div class="cabecalho-lista">
+        <h2>Grupos cadastrados <span id="contagem-grupos">(0)</span></h2>
+        <p class="ajuda">É necessário cadastrar pelo menos dois grupos.</p>
+      </div>
+      <div id="grupos-cadastrados" class="grupos-cadastrados" aria-live="polite"></div>
+
+      <div class="rodape-configuracao">
+        <p id="aviso-grupos" role="status"></p>
+        <button class="botao" id="iniciar-quiz" type="button" disabled>Avançar para as perguntas →</button>
+      </div>
+    </section>
+
+    <section class="tela oculta" id="tela-quiz" aria-labelledby="pergunta">
+      <header class="topo-quiz">
+        <div>
+          <p class="sobretitulo" id="progresso">Pergunta 1</p>
+          <h1>Quiz em grupos</h1>
+        </div>
+        <div id="placar-resumo" class="placar-resumo" aria-label="Placar atual"></div>
+      </header>
+      <div class="barra-questao" aria-hidden="true"><span id="progresso-barra"></span></div>
+
+      <div class="cartao-pergunta">
+        <p class="sobretitulo">Pergunta</p>
+        <h2 id="pergunta"></h2>
+      </div>
+
+      <div class="area-jogo">
+        <section class="painel-grupos" aria-labelledby="titulo-painel-grupos">
+          <h3 id="titulo-painel-grupos">Grupos</h3>
+          <p class="instrucao">Arraste um grupo para a alternativa escolhida. Em telas sensíveis ao toque, toque no grupo e depois na alternativa.</p>
+          <div id="grupos-arrastaveis"></div>
+        </section>
+        <section class="painel-alternativas" aria-labelledby="titulo-painel-alternativas">
+          <h3 id="titulo-painel-alternativas">Alternativas</h3>
+          <div id="alternativas"></div>
+        </section>
+      </div>
+
+      <footer class="acoes-quiz">
+        <button class="botao secundario" id="abrir-modal" type="button">Como funciona?</button>
+        <p id="status-rodada" role="status"></p>
+        <button class="botao" id="confirmar-rodada" type="button" disabled>Confirmar respostas →</button>
+      </footer>
+    </section>
+
+    <section class="tela oculta" id="tela-final" aria-labelledby="titulo-final">
+      <p class="sobretitulo">Quiz concluído</p>
+      <h1 id="titulo-final">Placar final</h1>
+      <p class="introducao">Os grupos estão ordenados pela pontuação.</p>
+      <div id="placar-final"></div>
+      <button class="botao" id="voltar-configuracao" type="button">Configurar novos grupos</button>
+    </section>
+  </main>
+
+  <dialog id="modal-resposta" aria-labelledby="titulo-modal-resposta">
+    <p class="sobretitulo">Resposta correta</p>
+    <h2 id="titulo-modal-resposta"></h2>
+    <p id="explicacao-resposta"></p>
+    <button class="botao" id="avancar-pergunta" type="button">Próxima pergunta →</button>
+  </dialog>
+
+  <dialog id="modal-ajuda" aria-labelledby="titulo-modal">
+    <h2 id="titulo-modal">Como funciona</h2>
+    <p id="texto-modal"></p>
+    <button class="botao" id="fechar-modal" type="button">Fechar</button>
+  </dialog>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
